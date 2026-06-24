@@ -1,0 +1,107 @@
+Core Python (Advanced):
+----------------------------
+
+1. How would you explain the differences between multithreading, multiprocessing, and async IO in Python? When would you choose each?
+2. What are Pythons GIL limitations, and how have you worked around them in real applications?
+3. Describe how memory management works in Python. How do reference counting and garbage collection interact?
+4. When optimizing Python code, what profiling tools do you use and why?
+5. Explain the difference between deep copy and shallow copy. When does it matter in production systems?
+
+Django (Senior-Level)
+--------------------------
+
+1. Describe Djangos request lifecycle from HTTP request to response.
+2. How do you design scalable Django applications for high traffic? What bottlenecks have you encountered?
+3. Explain how Django ORM handles lazy loading and query optimization.
+4. How do you manage database transactions in Django? Give real examples of using
+select_for_update()
+
+5. What are Django Signals, and when should they be avoided?
+
+
+FastAPI (Senior-Level)
+-----------------------------
+
+1. FastAPI is async-first. Explain how async views improve performance and when they dont.
+2. How does FastAPI handle dependency injection, and how have you used it to structure large applications?
+3. Describe how Pydantic validation works and how it affects performance in large payloads.
+4. What tools do you use to benchmark FastAPI endpoints?
+
+REST API Design
+------------------
+
+1. Describe the key principles of designing a REST API that scales. What patterns do you follow?
+2. What strategies do you use for versioning APIs?
+3. How do you ensure backward compatibility?
+4. Whats the difference between idempotent and safe HTTP methods? Provide examples.
+
+PostgreSQL Database Design & Optimization
+---------------------------------------
+
+6. Describe your approach to designing normalized relational schemas. When do you denormalize?
+7. How do you identify slow SQL queries in PostgreSQL?
+8. Explain indexing strategies: B-tree, GIN, BRIN ? when do you use each?
+9. How have you used materialized views or partitioning in large-scale systems?
+10. Describe how you tune PostgreSQL for heavy read/write workloads.
+
+Pandas & NumPy (Data Processing & Analytics)
+---------------------------------------
+
+1. Whats your approach to processing large datasets that dont fit into memory?
+2. Explain vectorization in NumPy. Why is it faster than pure Python?
+3. How do you optimize Pandas operations to reduce memory footprint?
+4. What strategies do you use for transforming unstructured datasets?
+
+Authentication, SSO, OAuth2, Keycloak
+--------------------------------------
+
+1. Walk through the OAuth2 authorization code flow.
+2. How do you implement role-based authorization in modern microservices?
+3. What are refresh tokens and how do you handle rotation securely?
+4. How have you integrated Keycloak with FastAPI or Django in past projects?
+
+Backend System Design & Integrations
+-------------------------------------
+
+1. How do you design a system that integrates with multiple third-party APIs?
+2. What strategies do you use for retry logic, idempotency, and error handling in integrations?
+3. Explain how you would design a service to ingest and transform 10M+ records daily.
+4. How do you handle API rate limits?
+
+Data Visualization (Metabase)
+------------------------
+
+1. How do you design datasets and SQL models so business users can build dashboards easily?
+2. What are common performance issues when running dashboards on production databases?
+3. How have you integrated Metabase with backend systems for automated reporting?
+
+
+Asynchronous Processing & Large File Handling
+-------------------------------------
+
+
+1. How do you architect a system that processes large files (1GB+)? What patterns do you use?
+2. What is your experience with Celery, Redis, or message queues? Explain how you'd pick the right one.
+3. How do you design a pipeline to upload and process files without blocking?
+4. What strategies do you use to ensure eventual consistency in async operations?
+
+
+CI/CD, Git & Linux
+----------------------------
+
+1. Explain your branching strategy and how you enforce code quality.
+2. How do you implement automated testing and security scanning in CI/CD?
+3. Describe how you troubleshoot memory leaks or performance issues in Linux environments.
+4. Walk through your approach to containerization and deployment (Docker/Kubernetes, if applicable).
+
+
+Scalability, Performance & Architecture Questions
+------------------------------------------------
+
+
+1. Describe a system you have scaled. What were the bottlenecks and how did you solve them?
+2. What is your approach to caching? What layers have you used (DB caching, Redis, CDN, application-level)?
+3. How do you design microservices that can scale independently?
+4. Whats your approach to observability? What tools do you use for logs, metrics, and tracing?
+5. How do you load-test APIs? What metrics are most important to you?
+6. Explain vertical vs. horizontal scaling and when you'd choose each.

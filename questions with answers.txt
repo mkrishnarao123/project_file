@@ -1,0 +1,407 @@
+1. Multithreading vs Multiprocessing vs Async IO
+------------------------------
+Multithreading
+
+Uses multiple threads within one process
+Blocked by Python's GIL for CPU bound tasks
+Best for I/O bound work (network calls, DB I/O, file I/O)
+Multiprocessing
+
+Spawns multiple independent processes
+Bypasses the GIL
+Best for CPU bound workloads (data processing, ML preprocessing)
+Async IO
+
+Single threaded cooperative multitasking
+Tasks yield control explicitly using
+await
+Best for high concurrency I/O operations (APIs, DB calls, messaging)
+When to choose:
+
+Many HTTP calls  Async IO
+Heavy CPU work  Multiprocessing
+Simple concurrent I/O in synchronous apps  Threads
+
+
+2. Python's GIL limitations and workarounds
+------------------------------------------
+
+Limitations:
+
+Only one thread executes Python bytecode at a time
+CPU bound operations do not scale across threads
+Multithreading rarely speeds CPU-heavy workloads
+Workarounds used in real projects:
+
+Use multiprocessing for CPU-bound tasks
+Offload computation to C-based libraries (NumPy, Pandas)
+Use async operations for I/O-bound tasks
+Leverage message queues + background workers (Celery/RQ)
+Move CPU-heavy work into microservices written in Go/Node/C++
+
+3. Python memory management: reference counting & GC
+--------------------------
+
+Reference Counting:
+
+Every object has a reference counter
+When count becomes zero  memory freed immediately
+Garbage Collection:
+
+Detects reference cycles, e.g. objects referencing each other
+Uses generational GC
+Runs periodically
+Interaction:
+
+Reference counting handles most objects
+GC is a fallback for cycles
+
+
+4. Profiling tools used
+--------------------------
+
+
+cProfile
+ overall performance hotspots
+line_profiler
+ identifies slow lines
+memory_profiler
+ memory leaks, heavy allocations
+py-spy
+or
+scalene
+ production-safe sampling profiler
+pstats
+& SnakeViz  visualizing profiling output
+Why these?
+They allow targeted optimization and are safe for production or near-production usage.
+
+5. Deep copy vs Shallow copy
+---------------------------------
+
+
+Shallow copy (
+copy.copy
+)
+
+Copies only top-level reference
+Nested objects remain shared
+Deep copy (
+copy.deepcopy
+)
+
+Recursively copies all nested structures
+Matters in production when:
+
+Working with nested configs or templates
+Mutating nested structures in multi-threaded logic
+Modifying default model schemas
+
+
+6. Django request lifecycle
+
+
+Request enters WSGI/ASGI server
+URL routing resolves a view
+Middleware (incoming)
+View executes
+ORM/data access
+Template rendering or JSON serialization
+Response returned
+Middleware (response phase)
+WSGI/ASGI returns to client
+
+
+7. Designing scalable Django apps
+
+
+Key approaches:
+
+Optimize ORM queries (
+select_related
+,
+prefetch_related
+)
+Add Redis caching (page, per-view, fragment caching)
+Move heavy tasks to Celery
+Use PostgreSQL indexing & connection pooling
+Split settings for multiple environments
+Serve static files via CDN
+Horizontal scaling using load balancers
+Common bottlenecks faced:
+
+N+1 queries
+Inefficient joins
+Blocking external API calls
+ORM serialization overhead
+Poor middleware design
+
+## 27. can we configure multiple database in jango, how to do that
+
+## 28. Make Migration and Migrate difference
+
+## Map, filter, reduce difference
+
+## How do you throw exception from calling function
+
+## inheritance - i want to pass variable from child to parent class
+
+## how do you create abstract method? what is the use of abstract method
+
+## what is solid principle? 
+
+## how do you create a custom exception
+
+
+8. FastAPI dependency injection
+
+
+Uses Python function parameters + decorators
+Dependency is a callable returning an object/resource
+Supports async/sync dependencies
+Can inject DB sessions, auth, caching layers, configuration, clients, etc.
+How I’ve used it:
+
+Provided per-request DB session
+Injected authentication user object
+Reusable modules for logging and rate-limiting
+Structured application into feature modules using DI
+
+
+9. Key principles of scalable REST API design
+
+
+Stateless endpoints
+Paginate all list responses
+Use caching (ETags, Redis)
+Maintain consistent JSON schema
+Idempotent methods for writes
+Versioning (
+/v1
+,
+/v2
+)
+Timeouts and circuit breakers
+Use OpenAPI/Swagger for documentation
+
+
+10. Ensuring backward compatibility
+
+
+Never break existing fields  only add new optional ones
+Support multiple versions until consumers migrate
+Maintain old behaviors via feature flags
+Avoid removing deprecated endpoints too early
+Use contract testing for API consumers
+
+
+11. Idempotent vs Safe HTTP methods
+
+
+Safe: Never change server state
+
+GET, HEAD, OPTIONS
+Idempotent: Multiple identical requests produce same result
+
+PUT (replace resource)
+DELETE (delete resource)
+PATCH is not guaranteed idempotent
+Example:
+PUT /user/123 {status: active}
+
+ safe to retry
+
+
+12. Identifying slow SQL in PostgreSQL
+
+
+Use
+EXPLAIN ANALYZE
+Enable slow query logs
+Check missing indexes
+Inspect query plans (Seq Scan vs Index Scan)
+Use pgstatstatements
+Benchmark queries with realistic datasets
+
+
+13. Processing large datasets not fitting memory
+
+
+Streaming with generators
+Chunk processing (
+pandas.read_csv(chunksize=...)
+)
+Use Dask/Polars/Spark for distributed compute
+Write intermediate results to disk
+Use database-level aggregation instead of loading raw data
+
+
+14. NumPy vectorization
+
+
+Operations executed in compiled C loops
+Removes Python interpreter overhead
+Executes bulk operations at once
+ far faster than Python loops
+
+
+15. Optimizing Pandas for memory
+Downcast integers & floats
+Convert object columns to categorical
+Remove unused columns
+Use chunking for large CSVs
+Use parquet instead of CSV for efficient storage
+
+
+16. Transforming unstructured datasets
+
+
+Regular expressions
+NLP tokenization
+Custom parsers for logs (split, delimiters)
+Clean data into uniform schema
+Use rule-based validation before ETL
+Schema mapping (e.g., feature extraction)
+
+
+17. OAuth2 Authorization Code Flow
+Steps:
+
+Client redirects user to Auth server
+User logs in
+Auth server redirects back with authorization code
+Backend exchanges code for access + refresh token
+Backend uses access token to call protected APIs
+
+
+18. Microservice Role-based Authorization
+
+Embed roles in JWT claims
+Use API Gateway for centralized RBAC
+Enforce resource-level permissions in each service
+Rotate signing keys
+Store roles in identity provider (Keycloak)
+
+
+19. Refresh tokens
+
+Long-lived tokens for obtaining new access tokens
+Store securely (HTTP-only cookie)
+Rotate on every use
+Invalidate stolen tokens by keeping hashed token family in DB
+
+
+20. Designing multi API integration system
+
+Use adapter pattern to normalize API responses
+Retry + exponential backoff
+Circuit breakers
+Throttling based on provider limits
+Queue-based orchestration
+Observability for each API call
+
+
+21. Retry logic, idempotency, error handling
+
+Use idempotency keys for POST requests
+Retry transient errors only (timeouts, 502, 503)
+Log structured error payloads
+Use saga pattern when needed
+Store retry counts in Redis
+
+
+22. Designing service that ingests 10M+ records daily
+------------------------------------------
+
+Use streaming ingestion
+Queue-based pipeline (Kafka/SQS/RabbitMQ)
+Batch writers to database
+Use columnar storage (parquet) for analytics
+Shard database if required
+Use worker autoscaling
+
+
+23. Handling API rate limits
+------------------------------
+
+Track request counts per API key in Redis
+Use token bucket or leaky bucket algorithm
+Queue requests when nearing limit
+Backoff when throttled
+
+
+24. Processing large (1GB+) files
+----------------------------------
+
+Patterns used:
+
+Stream uploads
+Process chunks sequentially
+Store file in object storage
+Background workers for processing
+Use async or multi-process pipelines
+
+
+25. Ensuring eventual consistency
+---------------------------------
+
+Use message queues
+Write events to event logs
+Retry + idempotent consumers
+Use compensation transactions for failures
+Track state transitions in DB
+
+
+26. Caching strategy
+-----------------------
+
+Layers:
+
+CDN caching for static & API GET
+Redis for DB query caching
+In-application LRU caching for small lookups
+Database caching using materialized views
+Cache invalidation via pub/sub
+
+
+27. Microservices that scale independently
+-------------------------
+
+Each service has its own DB (database-per-service)
+APIs decoupled via async messaging
+Horizontal scaling with containers
+Use independent deployment pipelines
+No shared state
+Use API Gateway for routing
+
+
+28. Observability approach
+----------------------------
+
+Tools:
+
+Logs  ELK, Loki
+Metrics  Prometheus + Grafana
+Tracing  OpenTelemetry + Jaeger
+Alerts  PagerDuty, Grafana Alerts
+Dashboards for latency, CPU, memory, queue depth, error rate
+
+
+
+29. Load-testing strategy
+----------------------------
+Tools:
+
+Locust
+k6
+JMeter
+Important metrics:
+
+Latency (P50, P95, P99)
+Throughput (RPS)
+Error rate
+CPU/memory usage
+DB connection utilization
+Queue depth
+Cache hit ratio
+Tail latency (super important for user experience)

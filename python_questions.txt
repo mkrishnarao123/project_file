@@ -1,0 +1,152 @@
+Python Interview Questions
+1. What is Python?
+2. What are the key features of Python?
+3. What are Python data types?
+4. Difference between List and Tuple?
+5. Difference between List and Set?
+6. Difference between List and Dictionary?
+7. What is a Dictionary in Python?
+8. What is a Tuple in Python?
+9. What is a Set in Python?
+10. What is String in Python?
+11. What are mutable and immutable data types?
+12. What is List Comprehension?
+13. What is Dictionary Comprehension?
+14. What is Lambda Function?
+15. What are *args and **kwargs?
+16. What is a Generator?
+17. Difference between Generator and Iterator?
+18. What is an Iterator?
+19. What is the yield keyword?
+20. What is the difference between return and yield?
+21. What is Exception Handling?
+22. What are try, except, else and finally blocks?
+23. How do you create custom exceptions?
+24. What is Object-Oriented Programming (OOP)?
+25. What are the four pillars of OOP?
+26. What is Encapsulation?
+27. What is Abstraction?
+28. What is Inheritance?
+29. What is Polymorphism?
+30. Difference between Method Overloading and Overriding?
+31. What is a Class?
+32. What is an Object?
+33. What is Constructor (__init__)?
+34. What is self keyword?
+35. What are Class Variables and Instance Variables?
+36. What are Static Methods?
+37. What are Class Methods?
+38. Difference between @staticmethod and @classmethod?
+39. What are Decorators?
+40. What are Python Modules?
+41. What are Python Packages?
+42. Difference between Module and Package?
+43. What is Virtual Environment?
+44. Why do we use pip?
+45. What is PEP 8?
+46. What is Python GIL?
+47. What is Multithreading?
+48. What is Multiprocessing?
+49. Difference between Thread and Process?
+50. What is Async Programming?
+51. What is Asyncio?
+52. Difference between synchronous and asynchronous programming?
+53. What is File Handling?
+54. Different file modes in Python?
+55. What is JSON?
+56. How do you read and write JSON files?
+57. What is Pickling and Unpickling?
+58. What is Deep Copy and Shallow Copy?
+59. Difference between is and ==?
+60. What are Python Built-in Functions?
+61. What is map()?
+62. What is filter()?
+63. What is reduce()?
+64. What is zip()?
+65. What is enumerate()?
+66. What is any() and all()?
+67. What are Context Managers?
+68. What is the with statement?
+69. What are Regular Expressions?
+70. What is Unit Testing in Python?
+71. What is PyTest?
+72. What is Logging?
+73. What is Monkey Patching?
+74. What is Duck Typing?
+75. What are Dataclasses?
+76. What is Type Hinting?
+77. What is Memory Management in Python?
+78. What is Garbage Collection?
+79. What are Python Closures?
+80. What are Python Interview Coding Challenges?
+FastAPI Interview Questions
+1. What is FastAPI?
+2. Why should we use FastAPI?
+3. FastAPI vs Flask?
+4. FastAPI vs Django?
+5. What are the advantages of FastAPI?
+6. How do you install FastAPI?
+7. What is Uvicorn?
+8. What is ASGI?
+9. Difference between WSGI and ASGI?
+10. How do you create a FastAPI application?
+11. What are Path Parameters?
+12. What are Query Parameters?
+13. Difference between Path and Query Parameters?
+14. What is Request Body?
+15. What is Pydantic?
+16. Why is Pydantic used in FastAPI?
+17. What are Pydantic Models?
+18. How do you validate request data?
+19. What are Response Models?
+20. How do you return custom responses?
+21. What are HTTP Methods?
+22. Difference between GET and POST?
+23. Difference between PUT and PATCH?
+24. Difference between PUT and DELETE?
+25. What is Dependency Injection in FastAPI?
+26. What is Depends()?
+27. How do you create reusable dependencies?
+28. What is Middleware?
+29. How do you add Middleware in FastAPI?
+30. What is CORS?
+31. How do you enable CORS in FastAPI?
+32. What is Authentication?
+33. What is Authorization?
+34. How do you implement JWT Authentication?
+35. What is OAuth2?
+36. How do you secure FastAPI APIs?
+37. How do you handle Exceptions?
+38. How do you create Custom Exception Handlers?
+39. What are Background Tasks?
+40. How do Background Tasks work?
+41. What are WebSockets in FastAPI?
+42. How do you implement WebSockets?
+43. What is File Upload in FastAPI?
+44. How do you upload multiple files?
+45. How do you connect FastAPI with a Database?
+46. FastAPI with SQLAlchemy?
+47. FastAPI with PostgreSQL?
+48. What is Alembic?
+49. How do you perform Database Migrations?
+50. What is CRUD in FastAPI?
+51. How do you implement Pagination?
+52. How do you implement Filtering and Sorting?
+53. What is API Versioning?
+54. How do you structure a FastAPI project?
+55. What is Dependency Override?
+56. How do you test FastAPI applications?
+57. What is TestClient?
+58. What is PyTest with FastAPI?
+59. How do you mock dependencies in tests?
+60. How do you deploy FastAPI applications?
+61. FastAPI with Docker?
+62. FastAPI with Nginx?
+63. How do you deploy FastAPI on AWS?
+64. How do you optimize FastAPI performance?
+65. What are Async Routes?
+66. What is Event Loop?
+67. How do you use Async Database Operations?
+68. What are Lifespan Events?
+69. What are Startup and Shutdown Events?
+70. What are Best Practices for FastAPI Development?
